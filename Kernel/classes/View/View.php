@@ -38,5 +38,11 @@ class View implements ViewInterfaces {
 
 	}
 
+	public function url($url) {
+
+		return preg_replace("/index.php/", "{$url}", $_SERVER['REQUEST_SCHEME']."://".$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF']);
+
+	}
+
 
 }

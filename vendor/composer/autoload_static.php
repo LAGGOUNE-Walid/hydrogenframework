@@ -21,7 +21,15 @@ class ComposerStaticInitd3539326e43efbf64d2f3ef7d5b28f97
     );
 
     public static $classMap = array (
+        'Kernel\\Controllers\\BaseController' => __DIR__ . '/../..' . '/Kernel/controllers/BaseController.php',
+        'Kernel\\Interfaces\\Database\\Database' => __DIR__ . '/../..' . '/Kernel/Interfaces/Database/Database.php',
         'Kernel\\Interfaces\\Router\\Router' => __DIR__ . '/../..' . '/Kernel/Interfaces/Router/Router.php',
+        'Kernel\\Interfaces\\Session\\Session' => __DIR__ . '/../..' . '/Kernel/Interfaces/Session/Session.php',
+        'Kernel\\Interfaces\\View\\view' => __DIR__ . '/../..' . '/Kernel/Interfaces/View/View.php',
+        'Kernel\\classes\\Database\\Database' => __DIR__ . '/../..' . '/Kernel/classes/Database/Database.php',
+        'Kernel\\classes\\Router\\Router' => __DIR__ . '/../..' . '/Kernel/classes/Router/Router.php',
+        'Kernel\\classes\\Session\\Session' => __DIR__ . '/../..' . '/Kernel/classes/Session/Session.php',
+        'Kernel\\classes\\View\\View' => __DIR__ . '/../..' . '/Kernel/classes/View/View.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

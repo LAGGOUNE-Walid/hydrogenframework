@@ -7,7 +7,7 @@ class HomeController extends BaseController {
 
 	public function index() {
 
-		$this->View->redirect("user");
+		$this->View->show("home");
 
 	}
 

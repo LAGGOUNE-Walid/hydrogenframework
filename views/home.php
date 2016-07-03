@@ -19,8 +19,5 @@
 </head>
 <body>
 Hydrogen Framework <strong>3.0</strong>
-<div class="body">
-	gg
-</div>
 </body>
 </html>
