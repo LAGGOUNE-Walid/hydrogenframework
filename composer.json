@@ -1,0 +1,15 @@
+{
+	"autoload" : {
+		"psr-4":{
+			"Kernel\\":"Kernel"
+		}
+	},
+
+	"authors": [
+        {
+            "name": "Walid laggoune",
+            "email": "walidlaggoune159@gmail.com",
+            "role": "Developer"
+        }
+		]
+}
