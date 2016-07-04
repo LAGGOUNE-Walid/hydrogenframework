@@ -112,20 +112,6 @@ class Database implements DatabaseInterface {
 
 	}
 
-	public function in($table,$usernameField,$passwordField) {
-		$this->table = $table;
-		$this->usernameField = $usernameField;
-		$this->passwordField = $passwordField;
-		return $this;
-	}
-
-	public function canLogin($username,$password) {
-		$data = $this->from($this->table)->where($this->usernameField,"=",$username)->all();
-		$p 		= $this->passwordField;
-		print_r($data);
-
-	}
-
 	public function __destruct() {
 		return $this->con = null;
 	}
