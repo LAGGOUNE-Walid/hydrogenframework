@@ -11,7 +11,5 @@ interface Database {
 	public function orderByDesc();
 	public function runSql($sql);
 	public function save($table,array $cols,array $values);
-	public function in($table,$usernameField,$passwordField);
-	public function canLogin($username,$password);
 
 }
