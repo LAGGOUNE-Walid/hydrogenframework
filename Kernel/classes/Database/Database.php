@@ -16,8 +16,6 @@ class Database implements DatabaseInterface {
 	protected $con;
 	protected $table;
 
-	public $usernameField = '';
-
 
 	public function __construct() {
 		if(!empty($this->host)) {
