@@ -3,6 +3,7 @@
 namespace Kernel\classes\Database;
 use Kernel\Interfaces\Database\Database as DatabaseInterface;
 use PDO;
+use Exception;
 
 class Database implements DatabaseInterface {
 
