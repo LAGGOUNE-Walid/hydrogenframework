@@ -100,9 +100,9 @@ class Database implements DatabaseInterface {
 		try{
 			$prepare = $this->con->prepare($sql);
 			if($prepare->execute($values)===true){
-
+				return true;
 			}else{
-				throw new Exception("Faild to insert the data at line 108");
+				throw new Exception("Faild to insert the data at line 102");
 			}
 		}catch(Exception $e){
 			die($e->getMessage());
