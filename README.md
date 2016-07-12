@@ -3,8 +3,5 @@
 
 ## Download docs :
 https://codeload.github.com/waliddz/hdwebsite/zip/master
-قم با تحميل التوثيق ثم قم با تشغيل السيرفر المحلي . 
-و توجه الى مساره ,مثلا :
-localhost/hdwebsite/home
-or
-localhost/hdwebsite/home
+
+التوثيق عبارة عن موقع صغير يتم تشغيله عن طريق السيرفر المحلي .
