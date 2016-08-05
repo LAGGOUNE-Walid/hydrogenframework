@@ -1,4 +1,12 @@
 {
+	"type": "project",
+	"description": "Arabian php mvc framework",
+	"license": "MIT",
+	"require": {
+
+		"php": ">=5.5.9"
+
+	},
 	"autoload" : {
 		"psr-4":{
 			"Kernel\\":"Kernel"

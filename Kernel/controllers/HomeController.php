@@ -1,14 +1,15 @@
 <?php
 
 use Kernel\controllers\BaseController;
+use Kernel\Models\User as User;
 
 class HomeController extends BaseController {
 
 
-	public function index() {
+		public function index() {
 
-		$this->View->show("home");
+			return $this->View->show("home");
 
-	}
+		}
 
 }

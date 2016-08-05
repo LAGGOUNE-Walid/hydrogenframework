@@ -1,3 +1,4 @@
+<? http_response_code(404); ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,6 +17,6 @@
 </head>
 <body>
 	Page Not found(404).<br/>
-	<img src="https://developer.cdn.mozilla.net/static/img/beast-404.ce38fcf80386.png"> 
+	<img src="https://developer.cdn.mozilla.net/static/img/beast-404.ce38fcf80386.png">
 </body>
 </html>

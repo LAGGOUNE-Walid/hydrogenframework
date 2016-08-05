@@ -6,7 +6,7 @@
 	<link rel="stylesheet" type='text/css' href="views/style.css">
 	<style type="text/css">
 	img{
-		max-width: 6%;
+		max-width: 10%;
 	}
 	body{
 		font-family: 'Titillium Web', sans-serif;
@@ -18,6 +18,12 @@
 	</style>
 </head>
 <body>
-Hydrogen Framework <strong>3.0</strong>
+	Hydrogen Framework <strong>3.2</strong><br/>
+	<img src="<? echo $this->url("views/hd.jpeg"); ?>" alt="" />
 </body>
 </html>
+<?php
+
+
+
+ ?>

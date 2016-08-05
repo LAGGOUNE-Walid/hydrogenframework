@@ -1,6 +1,6 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    RewriteCond %{REQUEST_FILENAME} !\.(css|js|png|jpg)$
+    RewriteCond %{REQUEST_FILENAME} !\.(css|js|png|jpg|jpeg)$
     RewriteCond %{REQUEST_URI} !-f
     RewriteCond %{REQUEST_URI} !-d
     RewriteCond %{REQUEST_URI} !-l
