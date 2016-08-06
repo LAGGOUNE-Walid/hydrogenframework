@@ -34,8 +34,9 @@ class View implements ViewInterfaces {
 
 	public function redirect($to) {
 
-		return header("Location: ".preg_replace("/index.php/", "{$to}", $_SERVER['REQUEST_SCHEME']."://".$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF']));
-
+		header("Location: ".preg_replace("/index.php/", "{$to}", $_SERVER['REQUEST_SCHEME']."://".$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF']));
+		exit();
+		
 	}
 
 	public function url($url) {
