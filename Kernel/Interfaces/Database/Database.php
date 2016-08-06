@@ -11,5 +11,10 @@ interface Database {
 	public function orderByDesc();
 	public function runSql(string $sql);
 	public function save(string $table,array $cols,array $values);
+	public function count();
+	public function limit(int $limit);
+	public function in(string $first,string $last);
+	public function mWhere(array $where);
+	public function JsonResponse(string $tableName);
 
 }
