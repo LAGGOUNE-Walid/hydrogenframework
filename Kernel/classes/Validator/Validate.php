@@ -30,6 +30,8 @@ class Validate implements ValidatorInterface {
 
     public    $errors = [];
 
+    public    $xss   = [] ;
+
     protected $errorsStyle = [
 
       "maxError"      =>  "Max length allowed in ",
@@ -85,7 +87,7 @@ class Validate implements ValidatorInterface {
           $inputName  = explode(".",$inputName);
           $inputName2   = $inputName[1];
           $nickName  = $inputName[0];
-          
+
 
             foreach($rules as $rule) {
 
@@ -156,6 +158,7 @@ class Validate implements ValidatorInterface {
                     if($value==="true") {
 
                       $inputName = $this->cleanXss($inputName2);
+                      array_push($this->xss,[$nickName => $inputName]);
 
                     }else {
 
