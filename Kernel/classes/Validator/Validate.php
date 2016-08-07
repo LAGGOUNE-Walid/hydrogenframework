@@ -84,7 +84,7 @@ class Validate implements ValidatorInterface {
 
         foreach($this->rules as $inputName => $rules) {
 
-          $inputName  = explode(".",$inputName);
+          $inputName  = explode(".",$inputName,2);
           $inputName2   = $inputName[1];
           $nickName  = $inputName[0];
 
