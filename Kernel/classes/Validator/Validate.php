@@ -83,8 +83,9 @@ class Validate implements ValidatorInterface {
         foreach($this->rules as $inputName => $rules) {
 
           $inputName  = explode(".",$inputName);
-          $nickName   = $inputName[1];
-          $inputName  = $inputName[0];
+          $inputName2   = $inputName[1];
+          $nickName  = $inputName[0];
+          
 
             foreach($rules as $rule) {
 
@@ -95,7 +96,7 @@ class Validate implements ValidatorInterface {
                 switch ($rule) {
                   case 'max':
 
-                      if($this->max($inputName,$value)) {
+                      if($this->max($inputName2,$value)) {
 
                         continue;
 
@@ -112,7 +113,7 @@ class Validate implements ValidatorInterface {
 
                   case 'min':
 
-                      if($this->min($inputName,$value)) {
+                      if($this->min($inputName2,$value)) {
 
                           continue;
 
@@ -130,7 +131,7 @@ class Validate implements ValidatorInterface {
 
                       if($value==="true") {
 
-                        if($this->makeItRequired($inputName)) {
+                        if($this->makeItRequired($inputName2)) {
 
                           continue;
 
@@ -154,7 +155,7 @@ class Validate implements ValidatorInterface {
 
                     if($value==="true") {
 
-                      $inputName = $this->cleanXss($inputName);
+                      $inputName = $this->cleanXss($inputName2);
 
                     }else {
 
@@ -168,7 +169,7 @@ class Validate implements ValidatorInterface {
 
                     if($value==="string") {
 
-                      if($this->CheckString($inputName)) {
+                      if($this->CheckString($inputName2)) {
 
                         continue;
 
@@ -185,7 +186,7 @@ class Validate implements ValidatorInterface {
 
                     if($value==="num") {
 
-                      if($this->CheckNum($inputName)) {
+                      if($this->CheckNum($inputName2)) {
 
                         continue;
 
@@ -201,7 +202,7 @@ class Validate implements ValidatorInterface {
 
                     if($value==="email") {
 
-                      if ($this->CheckEmail($inputName)) {
+                      if ($this->CheckEmail($inputName2)) {
 
                         continue;
 
@@ -217,7 +218,7 @@ class Validate implements ValidatorInterface {
 
                     if($value==="url") {
 
-                      if($this->checkUrl($inputName)) {
+                      if($this->checkUrl($inputName2)) {
 
                         continue;
 
@@ -231,11 +232,11 @@ class Validate implements ValidatorInterface {
 
                     }
 
-                    if($value==="Wurl") {
+                    if($value==="Aurl") {
 
                       if(function_exists("curl_version")) {
 
-                          if((curl_exec(curl_init($inputName)))) {
+                          if((curl_exec(curl_init($inputName2)))) {
 
                             continue;
 
@@ -306,7 +307,7 @@ class Validate implements ValidatorInterface {
 
     public function makeItRequired(string $inputName): bool {
 
-      if (empty($inputName)) {
+      if (empty($inputName) OR $inputName==="") {
 
         return false;
 
