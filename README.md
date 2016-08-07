@@ -7,6 +7,5 @@ https://doc-0o-0c-docs.googleusercontent.com/docs/securesc/nktc07k90t9v2vs3bnjgp
 
 
 
-![GitHub Logo](/images/logo.png)
-Format: ![Alt Text](https://s7.postimg.org/seqxdfqob/hydrogen.png)
+
 
