@@ -34,9 +34,9 @@ class Validate implements ValidatorInterface {
 
     protected $errorsStyle = [
 
-      "maxError"      =>  "Max length allowed in ",
+      "maxError"      =>  "Max length allowed",
 
-      "minError"      =>  "Min length allowed in ",
+      "minError"      =>  "Min length allowed",
 
       "emptyError"    =>  "This Field is required ",
 
