@@ -180,7 +180,7 @@ class Database implements DatabaseInterface {
 
 
 
-		public function count(): int {
+		public function count() {
 
 			return sizeof($this->data);
 
