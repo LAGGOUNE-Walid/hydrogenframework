@@ -1,0 +1,53 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "55f01f9fe6e62f6be7a172802383bffb",
+    "packages": [
+        {
+            "name": "waliddz/hydrogen-console",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/waliddz/hydrogen-console.git",
+                "reference": "e7d8006aa9d67047efa2ea36cb822e88928b177d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/waliddz/hydrogen-console/zipball/e7d8006aa9d67047efa2ea36cb822e88928b177d",
+                "reference": "e7d8006aa9d67047efa2ea36cb822e88928b177d",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Console\\": "Console"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "waliddz",
+                    "email": "walidlaggoune159@gmail.com"
+                }
+            ],
+            "description": "CLI library to work with inputs/outputs from/to the gnu/linux terminal.",
+            "time": "2017-02-25T09:58:24+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "waliddz/hydrogen-console": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}
