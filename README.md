@@ -1,5 +1,7 @@
-# hydrogenframework 4
-فريمورك هيدروجين هو اطار عمل مصغر يكفي لعمل المواقع البسيطة .
-# Download docs 
-إضغط على تحميل
-source : https://drive.google.com/open?id=0B_qWn_IYeBMxZ3d1UEZNRUxmNTQ
+# hydrogenframework 4.2
+Simple micro web framework built in php
+# Download docs
+https://drive.google.com/open?id=0B_qWn_IYeBMxeUw2MjhCWDBhYm8
+# Me
+Email : walidlaggoune159@gmail.com
+Facebook : DilawskyJordan
