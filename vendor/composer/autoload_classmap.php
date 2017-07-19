@@ -6,4 +6,25 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'src\\Classes\\Loger' => $baseDir . '/src/Classes/Loger.php',
+    'src\\Classes\\Router\\HttpCache' => $baseDir . '/src/Classes/Router/HttpCache.php',
+    'src\\Classes\\Router\\Request\\File' => $baseDir . '/src/Classes/Router/Request/File.php',
+    'src\\Classes\\Router\\Request\\HttpRequestLimiter' => $baseDir . '/src/Classes/Router/Request/HttpRequestLimiter.php',
+    'src\\Classes\\Router\\Request\\Middleware' => $baseDir . '/src/Classes/Router/Request/Middleware.php',
+    'src\\Classes\\Router\\Request\\Request' => $baseDir . '/src/Classes/Router/Request/Request.php',
+    'src\\Classes\\Router\\Router' => $baseDir . '/src/Classes/Router/Router.php',
+    'src\\Classes\\Session\\Session' => $baseDir . '/src/Classes/Session/Session.php',
+    'src\\Classes\\Validator\\Validator' => $baseDir . '/src/Classes/Validator/Validator.php',
+    'src\\Classes\\Validator\\ValidatorFactory' => $baseDir . '/src/Classes/Validator/ValidatorFactory.php',
+    'src\\Classes\\View\\View' => $baseDir . '/src/Classes/View/View.php',
+    'src\\Exceptions\\HydrogenExceptions' => $baseDir . '/src/Exceptions/HydrogenExceptions.php',
+    'src\\Interfaces\\Middleware\\MiddlewareInterface' => $baseDir . '/src/Interfaces/Middleware/MiddlewareInterface.php',
+    'src\\Interfaces\\Router\\Request\\HttpRequestLimiterInterface' => $baseDir . '/src/Interfaces/Router/Request/HttpRequestLimiterInterface.php',
+    'src\\Interfaces\\Router\\Request\\RequestInterface' => $baseDir . '/src/Interfaces/Router/Request/RequestInterface.php',
+    'src\\Interfaces\\Router\\RouterInterface' => $baseDir . '/src/Interfaces/Router/RouterInterface.php',
+    'src\\Interfaces\\Session\\SessionInterface' => $baseDir . '/src/Interfaces/Session/SessionInterface.php',
+    'src\\Interfaces\\Validator\\ValidatorInterface' => $baseDir . '/src/Interfaces/Validator/ValidatorInterface.php',
+    'src\\Interfaces\\View\\ViewInterface' => $baseDir . '/src/Interfaces/View/ViewInterface.php',
+    'src\\app\\http\\Controllers\\Container' => $baseDir . '/src/app/http/Controllers/Container.php',
+    'src\\app\\http\\middlewares\\ValidateHttpReuqestsMiddleware' => $baseDir . '/src/app/http/middlewares/ValidateHttpRequestsMiddleware.php',
 );

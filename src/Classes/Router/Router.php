@@ -6,6 +6,7 @@ use src\Classes\Loger as Loger;
 use src\app\http\Controllers\Container as Container;
 use src\Exceptions\HydrogenExceptions as HydrogenExceptions;
 use src\Interfaces\Router\RouterInterface as RouterInterface;
+use src\app\http\middlewares\ValidateHttpReuqestsMiddleware as ValidateHttpReuqestsMiddleware;
 
 class Router implements RouterInterface {
 
@@ -25,24 +26,9 @@ class Router implements RouterInterface {
 	public $routesParams 		= 	[];
 
 	/**
-	 * @var routesControllers [type of : array] : contain the base routes controllers
-	*/
-	public $routesControllers 	= 	[];
-
-	/**
-	 * @var routesMethods [type of : array] : contain	the base routes http methods.
-	*/
-	public $routesMethods 		=	[];
-
-	/**
-	 * @var middlewares [type of : array] : store the application midldewares
+	 * @var routeMethods [type of : array] : store the routes http request type
 	 */
-	public $middlewares 		= [];
-
-	/**
-	* @var controllerMethod [type of : array] : contain the routes controllers methods.
-	*/
-	public $controllersMethods 	= 	[];
+	public $routesMethods 		= [];
 
 	/**
 	 * @var view [type of : object] : contain the View object
@@ -50,11 +36,31 @@ class Router implements RouterInterface {
 	public $view = NULL;
 
 	/**
-	 * Description: src/Interfaces/Router/RouterInterface.php Line:11
+	 * @var finalParams [type of : array] : store the route parameters with the values from the request
+	 */
+	public $finalParams = [];
+
+	/**
+	 * @var baseUrl [type of : string] : store the request url
+	 */
+	public $baseUrl = NULL;
+
+	/**
+	 * @var callBackName [type of : array] : contain the name of the function that will be called
+	 */
+	public $callBackName = [];
+
+	/**
+	 * @var ValidateHttpReuqestsMiddleware [type of : object] : store the ValidateHttpReuqestsMiddleware class
+	 */
+	public $ValidateHttpReuqestsMiddleware = NULL;
+
+	/**
+	 * Description: src/Interfaces/Router/RouterInterface.php Line:12
 	*/
 	public function loadRoutes() {
 		$this->view = (new Container)->get("View");
-		try {
+		try {	
 			if (!file_exists("src/app/http/routes.php")) {
 				throw new HydrogenExceptions("File: routes.php not found ,", 1);
 				exit();
@@ -65,49 +71,52 @@ class Router implements RouterInterface {
 			exit();
 		}
 		require "src/app/http/routes.php";
-		$this->analyseRoutes($this->routes);
-		$this->analyseHttpRequest($_GET);
+	}
+
+	public function add($routeName, $callBack) {
+		return $this->routes[$routeName] = [$callBack];
+	}
+
+	public function run() {
+		return $this->analyseRoutes($this->routes);
 	}
 
 	/**
-	 * Description: src/Interfaces/Router/RouterInterface.php Line:19
+	 * Description: src/Interfaces/Router/RouterInterface.php Line:20
 	*/
 	public function analyseRoutes($routes) {
-		foreach ($routes as $route => $value) {
-			$route 				= 	explode("/",$route);
+		foreach ($routes as $route => $callBack) {
+			$route 					= explode(":", $route); 
+			$routeMethod 			= $route[1];
+			unset($route[1]); 
+			$route 				= 	explode("/", $route[0]);
 			$baseRoute 			= 	$route[1];
+			$this->callBackName[$baseRoute] = $callBack;
 			unset($route[0]);
 			unset($route[1]);
 			$routeParams 		= 	$route; 
-			$routeOptions 		= 	explode("|", $value);
-			$controller 		=	$routeOptions[0];
-			$middleware 		= 	(array_key_exists(2, $routeOptions)) ? $routeOptions[2] : NULL;
-			$controller 		= 	explode(".",$controller);
-			$controllerName 	=  	$controller[0];
-			$controllerMethod 	= 	$controller[1];
-			$httpMethod 		= 	$routeOptions[1];
 			array_push($this->baseRoutes, $baseRoute);
 			array_push($this->routesParams, $routeParams);
-			array_push($this->routesControllers, $controllerName);
-			array_push($this->controllersMethods, $controllerMethod);
-			array_push($this->routesMethods, $httpMethod);
-			array_push($this->middlewares, $middleware);
-
+			array_push($this->routesMethods, $routeMethod);
 		}
+		return $this->analyseHttpRequest($_GET);
 	}
 
 	/**
-	 * Description: src/Interfaces/Router/RouterInterface.php Line:27
+	 * Description: src/Interfaces/Router/RouterInterface.php Line:29
 	*/
 	public function analyseHttpRequest($httpReuqest) {
 
 		$httpReuqest = 	explode("/", htmlspecialchars($httpReuqest["url"]));
 		$baseUrl	 = 	$httpReuqest[0];
+		(new Loger)->log($_SERVER["REQUEST_URI"]);
+		$this->ValidateHttpReuqestsMiddleware = new ValidateHttpReuqestsMiddleware;
+		$this->baseUrl = $baseUrl;
 		unset($httpReuqest[0]);
 		$params 	= $httpReuqest;
 		$method 	= $_SERVER['REQUEST_METHOD']; 
 		try {
-			if(!$this->match($baseUrl)) {
+			if(!$this->ValidateHttpReuqestsMiddleware->before()->match($baseUrl, $this->baseRoutes)) {
 				throw new HydrogenExceptions("[HTTP] : 404 not found,", 2);
 			}
 		} catch (HydrogenExceptions $e) {
@@ -117,9 +126,18 @@ class Router implements RouterInterface {
 			$this->view->show("errors/404", ["error" => $erorr]);
 			exit();
 		}
-
 		try {
-			if (!$this->matchParams($baseUrl, $params)) {
+			if (!$this->ValidateHttpReuqestsMiddleware->before()->matchHttpMethod($baseUrl, $method, $this->baseRoutes, $this->routesMethods)) {
+				http_response_code(405);
+				throw new HydrogenExceptions("HTTP method not acceptable,", 4);
+			}
+		} catch (HydrogenExceptions $e) {
+			$ex = get_class($e);
+			echo($e->getMessage()." error code : #".$e->getCode()." [$ex]");
+			exit();
+		}
+		try {
+			if (!$this->ValidateHttpReuqestsMiddleware->before()->matchParams($baseUrl, $params, $this->baseRoutes, $this->routesParams)) {
 				throw new HydrogenExceptions("[HTTP] : 404 not found,", 3);
 			}	
 		} catch (HydrogenExceptions $e) {
@@ -129,51 +147,28 @@ class Router implements RouterInterface {
 			$this->view->show("errors/404", ["error" => $erorr]);
 			exit();
 		}
-
-		try {
-			if (!$this->matchHttpMethod($baseUrl, $method)) {
-				http_response_code(405);
-				throw new HydrogenExceptions("HTTP method not acceptable,", 4);
-			}
-		} catch (HydrogenExceptions $e) {
-			$ex = get_class($e);
-			echo($e->getMessage()." error code : #".$e->getCode()." [$ex]");
-			exit();
-		}	
-		(new Container)->get("Middleware")
-						->run("BEFORE", $this->middlewares[array_search($baseUrl, $this->baseRoutes)],$baseUrl, $method, array_combine($this->routesParams[array_search($baseUrl, $this->baseRoutes)], $params),new Container);
-		$this->getController($baseUrl,$params);
-		(new Container)->get("Middleware")
-						->run("AFTER", $this->middlewares[array_search($baseUrl, $this->baseRoutes)],$baseUrl, $method, array_combine($this->routesParams[array_search($baseUrl, $this->baseRoutes)], $params), new Container);
+		$this->finalParams = array_combine($this->routesParams[array_search($baseUrl, $this->baseRoutes)], $params);
+		return call_user_func($this->callBackName[$baseUrl][0], $this->finalParams, new Container);
 	}
 
 	/**
-	 * Description: src/Interfaces/Router/RouterInterface.php Line:35
+	 * Description: src/Interfaces/Router/RouterInterface.php Line:38
 	*/
-	public function match($baseUrl) {
-		return (!in_array($baseUrl, $this->baseRoutes)) ? false : true;
+	public function middleware($type, $middlewareName, $container) {
+		if($type === "BEFORE") {
+			$container->get("Middleware")
+						->run("BEFORE", $middlewareName, $this->baseUrl, $this->routesMethods[array_search($this->baseUrl, $this->baseRoutes)], $this->finalParams, $container);
+		}
+		if($type === "AFTER") {	
+			$container->get("Middleware")
+						->run("AFTER", $middlewareName, $this->baseUrl, $this->routesMethods[array_search($this->baseUrl, $this->baseRoutes)], $this->finalParams, $container);
+		}
 	}
 
 	/**
-	 * Description: src/Interfaces/Router/RouterInterface.php Line:44
+	 * Description: src/Interfaces/Router/RouterInterface.php Line:50
 	*/
-	public function matchParams($baseUrl, $params) {
-		return (!(sizeof($this->routesParams[array_search($baseUrl, $this->baseRoutes)]) === sizeof($params))) ? false : true;
-	}
-
-	/**
-	 * Description: src/Interfaces/Router/RouterInterface.php Line:54
-	*/
-	public function matchHttpMethod($baseUrl, $method) {
-		return (!($method === $this->routesMethods[array_search($baseUrl, $this->baseRoutes)])) ? false : true;
-	}
-
-	/**
-	 * Description: src/Interfaces/Router/RouterInterface.php Line:61
-	*/
-	public function getController($baseUrl, $params) {
-		$controllerName 	= 	$this->routesControllers[array_search($baseUrl, $this->baseRoutes)];
-		$controllerMethod 	= 	$this->controllersMethods[array_search($baseUrl, $this->baseRoutes)];
+	public function controller($controllerName, $controllerMethod, $params, $container) {
 		try {
 			if (!file_exists("src/app/http/Controllers/".$controllerName.".php")) {
 				throw new HydrogenExceptions("$controllerName not found, ", 5);
@@ -194,12 +189,6 @@ class Router implements RouterInterface {
 			echo($e->getMessage()." error code: #".$e->getCode()." [$ex]");
 			exit();
 		}
-		$finalParams = array_combine($this->routesParams[array_search($baseUrl, $this->baseRoutes)], $params);
-		(new Loger)->log($baseUrl);
-		if (sizeof($finalParams) > 0) {
-			$controller->$controllerMethod($finalParams, new Container);
-		}else {
-			$controller->$controllerMethod(new Container);
-		}	
+		return $controller->$controllerMethod($params, $container);
 	}	
 }

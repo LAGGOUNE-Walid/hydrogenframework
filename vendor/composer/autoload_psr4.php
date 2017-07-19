@@ -7,5 +7,4 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'src\\' => array($baseDir . '/src'),
-    'Console\\' => array($vendorDir . '/waliddz/hydrogen-console/Console'),
 );

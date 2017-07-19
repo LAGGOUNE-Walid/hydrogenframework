@@ -29,38 +29,24 @@ interface RouterInterface {
 	public function analyseHttpRequest($httpReuqest);
 
 	/**
-	 * function <match>
-	 * @param method [type of : baseUrl] : the url name
-	 * the function used to compare the url given with routes given
-	 * @return bollean
+	 * function <middleware>
+	 * @param type [type of : string] : the middleware type (Before or after the request)
+	 * @param middlewareName [type of : string] : the middleware Class name
+	 * @param container [type of : object] : the Container class
+	 * @return false or void 
 	 */
-	public function match($baseUrl);
+	public function middleware($type, $middlewareName, $container);
 
 	/**
-	 * function <matchParams>
-	 * @param baseUrl [type of : string] : the url 
-	 * @param baseUrl [type of : params] : the url params
-	 * the function used to compare the route params with the url params
-	 * @return bollean
-	 */
-	public function matchParams($baseUrl, $params);
-
-
-	/**
-	 * function <checkHttpMethod>
-	 * @param method [type of : string] : the http method should be
-	 * @param baseUrl [type of : strong] : the url name
-	 * the function used to compare the method given with the http request method
-	 * @return bollean
-	 */
-	public function matchHttpMethod($baseUrl, $method);
-
-	/**
-	 * function <getController>
+	 * function <controller>
 	 * the function used to load the controller
+	 * @param controllerName [type of : string] : the controller Class name
+	 * @param controllerMethod [type of : string] : the controller method 
+	 * @param params [type of : array] : the http request parameters 
+	 * @param container [type of : object] : the Container class
 	 * @throws src\Exceptions\HydrogenExceptions 
-	 * @return true of controller found or @return false if controller not found
+	 * @return void of controller found or @return false if controller not found
 	 */
-	public function getController($baseUrl, $params);
+	public function controller($controllerName, $controllerMethod, $params, $container);
 
 }

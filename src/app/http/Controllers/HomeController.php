@@ -2,7 +2,7 @@
 
 class HomeController {
 
-	public function index(src\app\http\Controllers\Container $container) {
+	public function home($params, src\app\http\Controllers\Container $container) {
 		$container->get("View")->show("home");
 	}
 

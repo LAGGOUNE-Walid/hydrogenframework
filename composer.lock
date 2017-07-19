@@ -4,20 +4,21 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "55f01f9fe6e62f6be7a172802383bffb",
+    "hash": "f12298386f4e7674f978d64c806616d5",
+    "content-hash": "1f766c1a0caf3fad6e6c5741a978973d",
     "packages": [
         {
-            "name": "waliddz/hydrogen-console",
+            "name": "dilawsky/hydrogen-console",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/waliddz/hydrogen-console.git",
-                "reference": "e7d8006aa9d67047efa2ea36cb822e88928b177d"
+                "url": "https://github.com/DilawskyJordan/hydrogen-console.git",
+                "reference": "3b3af8a1343f6d77746b33d4aaf38b5a55f5250f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/waliddz/hydrogen-console/zipball/e7d8006aa9d67047efa2ea36cb822e88928b177d",
-                "reference": "e7d8006aa9d67047efa2ea36cb822e88928b177d",
+                "url": "https://api.github.com/repos/DilawskyJordan/hydrogen-console/zipball/3b3af8a1343f6d77746b33d4aaf38b5a55f5250f",
+                "reference": "3b3af8a1343f6d77746b33d4aaf38b5a55f5250f",
                 "shasum": ""
             },
             "type": "library",
@@ -30,21 +31,49 @@
             "license": [
                 "MIT"
             ],
+            "description": "CLI library to work with inputs/outputs from/to the gnu/linux terminal.",
+            "time": "2017-07-17 16:05:06"
+        },
+        {
+            "name": "dilawsky/hydrogen-zipper",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/DilawskyJordan/hydrogen-zipper.git",
+                "reference": "7538f324c13d960d5becd7e613106256b186ba4a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/DilawskyJordan/hydrogen-zipper/zipball/7538f324c13d960d5becd7e613106256b186ba4a",
+                "reference": "7538f324c13d960d5becd7e613106256b186ba4a",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Zipper\\": "Zipper"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
             "authors": [
                 {
                     "name": "waliddz",
                     "email": "walidlaggoune159@gmail.com"
                 }
             ],
-            "description": "CLI library to work with inputs/outputs from/to the gnu/linux terminal.",
-            "time": "2017-02-25T09:58:24+00:00"
+            "description": "class to work with .zip files",
+            "time": "2017-07-18 12:01:00"
         }
     ],
     "packages-dev": [],
     "aliases": [],
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "stability-flags": {
-        "waliddz/hydrogen-console": 20
+        "dilawsky/hydrogen-console": 20,
+        "dilawsky/hydrogen-zipper": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

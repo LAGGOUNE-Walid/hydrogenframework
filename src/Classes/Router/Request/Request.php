@@ -35,7 +35,7 @@ class Request implements RequestInterface {
    * Description: src/Interfaces/Router/RequestInterface.php Line:27
   */
   public function getHeader($name) {
-     if(!is_null(apache_request_headers()[$name])) {
+     if(!is_null(@apache_request_headers()[$name])) {
         return apache_request_headers()[$name];
     }
     return null;

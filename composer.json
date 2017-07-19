@@ -9,7 +9,10 @@
             "src\\": "src/"
         }
     },
+    "minimum-stability": "dev",
+    "stability": "stable",
     "require": {
-        "waliddz/hydrogen-console": "dev-master"
+        "dilawsky/hydrogen-console": "dev-master",
+        "dilawsky/hydrogen-zipper": "dev-master"
     }
 }

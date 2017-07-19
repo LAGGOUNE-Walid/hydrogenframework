@@ -20,12 +20,12 @@ class HttpRequestLimiter implements HttpRequestLimiterInterface {
 	/**
 	 * @var time [type of : string] : requests allowed in this time
 	 */
-	public $time 	= 	"+60 minutes";
+	public $time 	= 	NULL;
 
 	/**
 	 * @var limitsEnd [type of : string] : the user banned time
 	 */
-	public $limitsEnd 	= 	"+5 minutes";
+	public $limitsEnd 	= 	NULL;
 	
 	/**
 	 * @var view [type of : object] : store the view class
