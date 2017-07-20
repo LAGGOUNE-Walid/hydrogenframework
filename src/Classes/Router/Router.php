@@ -156,11 +156,11 @@ class Router implements RouterInterface {
 	*/
 	public function middleware($type, $middlewareName, $container) {
 		if($type === "BEFORE") {
-			$container->get("Middleware")
+			return $container->get("Middleware")
 						->run("BEFORE", $middlewareName, $this->baseUrl, $this->routesMethods[array_search($this->baseUrl, $this->baseRoutes)], $this->finalParams, $container);
 		}
 		if($type === "AFTER") {	
-			$container->get("Middleware")
+			return $container->get("Middleware")
 						->run("AFTER", $middlewareName, $this->baseUrl, $this->routesMethods[array_search($this->baseUrl, $this->baseRoutes)], $this->finalParams, $container);
 		}
 	}
