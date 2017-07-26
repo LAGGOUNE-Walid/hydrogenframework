@@ -20,6 +20,6 @@
 </head>
 <body>
 	Hydrogen Framework <strong>4</strong><br/>
-	<img src="<? echo $this->url("src/app/views/hd.jpeg"); ?>" alt="" />
+	<img src="<?php echo $this->url('src/app/views/hd.jpeg'); ?>" alt="" />
 </body>
 </html>
