@@ -109,6 +109,9 @@ class Validator implements ValidatorInterface {
 	 * Descriptions: src/Interfaces/Validator/ValidatorInterface.php Line: 61
 	 */
     public function typeof($type, $inputName,$inputValue) {
+	 
+	$inputValue = str_replace(' ','', $inputValue);    
+	    
     	if ($type === "string") {
     		return (ctype_alpha($inputValue)) ? true : $this->errors[$inputName] = $this->errorsStyle["notString"];
     	}
