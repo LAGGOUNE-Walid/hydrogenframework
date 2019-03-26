@@ -75,7 +75,7 @@ class Session implements SessionInterface {
             return $ret;
         }
         if (self::has($key)) {
-            session_unset($key);
+            unset($_SESSION[$key]);
             return true;
         } else {
             return false;
