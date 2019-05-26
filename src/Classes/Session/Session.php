@@ -2,7 +2,6 @@
 
 namespace src\Classes\Session;
 session_start();
-session_regenerate_id(true);
 
 use src\Classes\View\View as View;
 use src\Classes\Router\Request\Request as Request;
